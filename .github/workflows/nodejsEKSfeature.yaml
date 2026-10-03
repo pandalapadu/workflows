@@ -22,7 +22,7 @@ jobs:
         id: get_version 
         run: |
             version=$(jq -r '.version' package.json)
-            echo "version=${version}" >> $GITHUB_OUTPUTS
+            echo "version=${version}" >> $GITHUB_OUTPUT
       
       - name: print the version
         run: echo "The version of the application is ${{ steps.get_version.outputs.version }}"
