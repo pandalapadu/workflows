@@ -13,17 +13,20 @@ env:
   component: ${{ inputs.component }}
 jobs:
   build-nodejs:
+
     runs-on: ubuntu-latest
     steps:
       - name: Code Checkout
         uses: actions/checkout@v7 # this is plugin to checkout the code from the repository
 
-      - name: list of files
+      - name: read version from package.json
+        id: get_version 
         run: |
-            ls -ltr
-            pwd
-
-
+            version=$(jq -r '.version' package.json)
+            echo "version=${version}" >> $GITHUB_ENV
+      
+      - name: print the version
+        run: echo "The version of the application is ${{ steps.get_version.outputs.version }}"
 
 
 #Turns a workflow into a reusable template (library function) that can be executed by other workflows.
