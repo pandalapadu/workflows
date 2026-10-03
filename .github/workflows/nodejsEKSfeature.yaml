@@ -8,14 +8,22 @@ on:
       component:
         required: true
         type: string
+env:
+  project: ${{ inputs.project }}
+  component: ${{ inputs.component }}
 jobs:
   build-nodejs:
     runs-on: ubuntu-latest
     steps:
-      - name: read version from input
+      - name: Code Checkout
+        uses: actions/checkout@v7 # this is plugin to checkout the code from the repository
+
+      - name: list of files
         run: |
-          echo "Project: ${{ inputs.project }}"
-          echo "Component: ${{ inputs.component }}"
+            ls -ltr
+            pwd
+
+
 
 
 #Turns a workflow into a reusable template (library function) that can be executed by other workflows.
