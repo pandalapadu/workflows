@@ -1,0 +1,22 @@
+name: NodeJS EKS Feature Workflow
+on:
+  workflow_call:
+    inputs:
+      project:
+        required: true
+        type: string
+      component:
+        required: true
+        type: string
+jobs:
+  build-nodejs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: read version from input
+        run: |
+          echo "Project: ${{ inputs.project }}"
+          echo "Component: ${{ inputs.component }}"
+
+
+#Turns a workflow into a reusable template (library function) that can be executed by other workflows.
+#workflow_call (The Internal Intercom Page): This is a manager using the office phone to call an internal department blueprint. They dial Ext 401 (The HR Department) and say, "Execute the standard new-employee onboarding process for John Doe." The HR script didn't start because of a human button or a system fire; it was called directly by another manager to do a specific job.
